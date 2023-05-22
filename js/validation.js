@@ -2,11 +2,18 @@
 Código em portugues, arquivos em inglês. Código será usado como referência futura.
 */
 
-const inputDate = document.querySelector('[data-dataNascimento]')
 
-//Evento 'blur' é quando o input perde o foco
-inputDate.addEventListener('blur', evento => validaDataNascimento(evento.target))
-//evento.target retorna o input type="date
+export function valida(input){
+    const tipoInput = input.dataset.tipo
+    //Pega o valor do data-attribute do "tipoInput" no input passado
+    if(validadores[tipoInput]){
+        validadores[tipoInput](input)
+    }
+}
+
+const validadores = {
+    dataNascimento: input => validaDataNascimento(input)
+}
 
 
 function validaDataNascimento(input){
